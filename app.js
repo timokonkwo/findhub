@@ -1,5 +1,8 @@
-// Search Input
+// Instantiate the github class
 
+github = new GitHUb();
+
+// Search Input
 const SearchUser = document.getElementById('searchUser');
 
 // Search Input Event Listener
@@ -7,7 +10,22 @@ const SearchUser = document.getElementById('searchUser');
 SearchUser.addEventListener('keyup', (e) => {
     // Get Input text
 
-    const userText = e.target.value;
+    const username = e.target.value;
 
-    if (userText !== '') {}
+    if (username !== '') {
+        // Make http call
+
+        github.getUser(username)
+            .then(data => {
+                console.log(data.profile)
+                if (data.profile.message == 'Not Found') {
+                    // Show Alert
+                } else {
+                    // Show profile
+                }
+            })
+    } else {
+
+        // Clear profile
+    }
 })
